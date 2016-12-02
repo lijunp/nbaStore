@@ -1,0 +1,64 @@
+<div class="header" ng-include="'header.html'"></div>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="breadcrumb">
+      <li><a href="#/mall_main">首页</a></li>
+      <li><a href="#">球鞋</a></li>
+      <li>详情</li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <img class="img-responsive" src="img/prolist/{{Img.m}}"/>
+      </div>
+      <div class="panel-footer">
+        <div>
+          <ul class="list-unstyled row" id="list">
+            <li class="col-xs-3" ng-repeat="photo in photoList">
+              <input id="img_{{$index}}" type="radio" name="img_sm" ng-hide="true" ng-model="Img.s" value="{{photo.img_sm}}"/>
+              <label for="img_{{$index}}"><span><img class="img-thumbnail" ng-src="img/prolist/{{photo.img_sm}}"/></span></label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-8">
+    <h2 class="text-primary">{{proDetail.pname}}</h2>
+    <h3 class="text-danger">￥{{proDetail.price}}</h3>
+    <hr/>
+    <ul class="list-unstyled">
+      <li class="margin-bottom-md">
+        <b class="class-left">颜色</b>
+        <label for="p_{{$index}}" ng-repeat="color in proDetail.colorList"><span onclick="chose(this)" class="color-box">{{color.colorName}}</span></label>
+        <input id="p_{{$index}}" type="radio" name="proColor" ng-hide="true" ng-model="order.colorId" ng-repeat="color in proDetail.colorList" value="{{color.colorId}}"/>
+      </li>
+      <li class="margin-bottom-md">
+        <b class="class-left">尺寸</b>
+        <label for="s_{{$index}}" ng-repeat="size in sizeList"><span class="size-box" onclick="chose(this)">{{size.psize}}</span></label>
+        <input id="s_{{$index}}" type="radio" name="proSize" ng-hide="true" ng-model="order.sizeId" ng-repeat="size in sizeList" value="{{size.sizeId}}"/>
+
+        <!--<span class="size-box" ng-repeat="size in sizeList">{{size.psize}}</span>-->
+      </li>
+      <li  class="margin-bottom-lg">
+        <b class="class-left">数量</b>
+        <button type="button" ng-click="reduce()" class="btn btn-default">-</button><input type="text" class="count" ng-model="order.count" value="1"/><button type="button" ng-click="add()" class="btn btn-primary">+</button>
+      </li>
+    </ul>
+    <button type="button" class="btn btn-danger" ng-click="addToCart()">加入购物车</button>
+    <button type="button" class="btn btn-warning"  ng-click="jump('/mall_main')">看看其他</button>
+    <hr/>
+    <h3 class="text-primary">商品详情</h3>
+    <p ng-repeat="info in pinfo">{{info}}</p>
+  </div>
+</div>
+<!--<div class="row">-->
+  <!--<div class="col-xs-12">-->
+    <!--<h3 class="text-primary">商品详情</h3>-->
+    <!--<p ng-repeat="info in pinfo">{{info}}</p>-->
+  <!--</div>-->
+<!--</div>-->
+<div class="footer" ng-include="'footer.html'"></div>

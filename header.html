@@ -1,0 +1,68 @@
+<div class="navbar navbar-fixed-top navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-item">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#/mall_main">
+        <img src="img/index/logo-md.png" class="img-responsive" style="height:30px;"/>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="nav-item">
+      <ul class="nav navbar-nav">
+        <li><a href="#/mall_main">首页</a></li>
+        <li><a href="#/mall_proList/10" ng-model="pclass">篮球</a></li>
+        <li><a href="#/mall_proList/20" ng-model="pclass">篮球鞋</a></li>
+        <li><a href="#/mall_proList/30" ng-model="pclass">球衣</a></li>
+        <li><a href="#/mall_proList/0">其他配饰</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-if="!userId"><button class="btn btn-default navbar-btn" data-target="#login" data-toggle="modal">登录/注册</button></li>
+        <li ng-if="userId"><a href="#/mall_userCenter/1" class="navbar-a">欢迎回来！{{userName}}</a><a href="" ng-click="exit()" class="navbar-a">[退出登录]</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="login" role="dialog" aria-hidden="true" aria-labelledby="modalLabel" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">登录&nbsp;/&nbsp;注册</h4>
+      </div>
+      <div class="modal-body">
+        <div class="tab-content">
+          <form name="loginForm" class="login-form">
+            <div class="form-group">
+              <label>用户名：</label>
+              <input type="text" class="form-control" ng-model="userName" required ng-pattern="/^\w{6,10}$/" placeholder="请输入用户名"/>
+              <span class="error" ng-show="loginForm.input.$error.required">用户名不能为空</span>
+              <span class="error" ng-show="loginForm.input.$error.pattern">用户名为6-10位字母、数字、下划线的组合</span>
+            </div>
+            <div class="form-group">
+              <label>密码：</label>
+              <input type="password" placeholder="请输入密码" class="form-control"/>
+              <span></span>
+            </div>
+            <div class="form-group">
+              <label>
+                <input type="checkbox"/>下次自动登录
+              </label>
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary btn-block" value="登录"/>
+            </div>
+            <!--<div class="form-group">-->
+              <!--<input type="button" class="btn btn-danger btn-block" value="注册"/>-->
+            <!--</div>-->
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <p class="text-left">其他登录方式：</p>
+      </div>
+    </div>
+  </div>
+</div>

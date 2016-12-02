@@ -1,0 +1,137 @@
+<div class="header" ng-include="'header.html'"></div>
+<div ng-if="isMyCart" class="row">
+  <div class="hidden-xs col-sm-3">
+    <div class="panel panel-primary">
+      <div class="panel-body list-group">
+        <h3 class="list-group-item">用户中心</h3>
+        <ul class="list-group-item list-unstyled">
+          <li><a href="#/mall_userCenter/1">我的购物车</a></li>
+          <li><a href="#/mall_userCenter/2">我的订单</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <span class="panel-title">收货人信息</span><button type="button" class="btn btn-success btn-sm pull-right" style="margin-top:-5px">添加收货人信息</button>
+          </div>
+          <div class="panel-body">
+            <span>广州市白云区嘉禾望岗王刚小区5栋306李君18738116546</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item row text-center">
+              <div class="col-xs-1 hidden-xs">
+                <label class="control-label">
+                  <input type="checkbox"/>全选
+                </label>
+              </div>
+              <div class="col-xs-2">商品图片</div>
+              <div class="col-xs-4 col-sm-3">商品参数</div>
+              <div class="col-xs-2">购买数量</div>
+              <div class="col-xs-2">小计</div>
+              <div class="col-xs-2">操作</div>
+            </li>
+            <li class="list-group-item row text-center" ng-repeat="pro in productList">
+              <div class="col-xs-1 hidden-xs">
+                <label class="control-label">
+                  <input type="checkbox"/>
+                </label>
+              </div>
+              <div class="col-xs-2">
+                <a href="#/mall_detail/{{pro.proId}}"><img class="img-responsive" ng-src="img/prolist/{{pro.img_sm}}"/></a>
+              </div>
+              <div class="col-xs-4 col-sm-3">
+                <p ng-bind="pro.pname"></p>
+                <p><span ng-bind="pro.colorName"></span><span ng-bind="pro.psize"></span><span>￥{{pro.price}}</span></p>
+              </div>
+              <div class="col-xs-2">
+                <span ng-bind="pro.count">1</span>
+              </div>
+              <div class="col-xs-2">
+                <span>￥{{pro.totalPrice}}</span>
+              </div>
+              <div class="col-xs-2">
+                <button type="button" class="btn-xs btn-link" ng-click="removePro(pro.did)">删除</button>
+                <br/>
+                <button type="button" class="btn-xs btn-link" ng-click="jump('/mall_detail/'+pro.proId)">查看详情</button>
+              </div>
+            </li>
+            <li class="list-group-item row text-center">
+              <div class="col-xs-12">
+                <p class="text-right">总价：<span ng-bind="total"></span><button type="button" class="btn btn-danger" ng-click="submitOrder()">提交订单</button></p>
+              </div>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class=""></div>
+  </div>
+</div>
+<div ng-if="isMyOrder" class="row">
+  <div class="hidden-xs col-sm-3">
+    <div class="panel panel-primary">
+      <div class="panel-body list-group">
+        <h3 class="list-group-item">用户中心</h3>
+        <ul class="list-group-item list-unstyled">
+          <li><a href="#/mall_userCenter/1">我的购物车</a></li>
+          <li><a href="#/mall_userCenter/2">我的订单</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="list-group">
+          <div class="list-group-item row text-center">
+            <div class="col-xs-3">订单详情</div>
+            <div class="col-xs-1">收货人</div>
+            <div class="col-xs-2">订单金额</div>
+            <div class="col-xs-2">下单时间</div>
+            <div class="col-xs-2">订单状态</div>
+            <div class="col-xs-2">操作</div>
+          </div>
+          <div  ng-repeat="order in orderList">
+            <div class="list-group-item row">
+              <div class="col-xs-12">
+                订单编号：<span ng-bind="order.orderNum">2016011254</span>
+              </div>
+            </div>
+            <div class="list-group-item row text-center">
+              <div class="col-xs-3">
+                <img style="float:left;width:40px;" class='img-responsive' ng-src="img/prolist/{{product.img_sm}}" ng-repeat="product in order.productList"/>
+              </div>
+              <div class="col-xs-1">
+                <span ng-bind="order.rcvName"></span>
+              </div>
+              <div class="col-xs-2">
+                <span>￥{{order.price}}</span>
+              </div>
+              <div class="col-xs-2">
+                <span ng-bind="order.orderTime"></span>
+              </div>
+              <div class="col-xs-2">
+                <span ng-bind="order.status"></span>
+              </div>
+              <div class="col-xs-2">
+                <button type="button" class="btn-xs btn-link">查看详情</button>
+                <br/>
+                <button type="button" class="btn-xs btn-link">发表评论</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=""></div>
+  </div>
+</div>
+<div ng-include="'footer.html'"></div>
